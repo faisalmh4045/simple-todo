@@ -21,21 +21,50 @@ const TodoItem = ({ todo }) => {
 
     return (
         <div>
-            <input
-                type="checkbox"
-                checked={todo.completed}
-                onChange={handleToggleCompleted}
-            />
-            <input
-                type="text"
-                value={todoMsg}
-                onChange={(e) => setTodoMsg(e.target.value)}
-                readOnly={!isTodoEditable}
-            />
-            <button onClick={() => handleEditTodo()} disabled={todo.completed}>
-                {isTodoEditable ? "save" : "edit"}
-            </button>
-            <button onClick={handleDeleteTodo}>delete</button>
+            <div className="input-group mb-3 input-group-lg shadow-sm rounded-3 border">
+                <div className="input-group-text border-0">
+                    <input
+                        className="form-check-input mt-0"
+                        type="checkbox"
+                        checked={todo.completed}
+                        onChange={handleToggleCompleted}
+                    />
+                </div>
+                <input
+                    type="text"
+                    className={
+                        todo.completed
+                            ? "form-control border-0 text-decoration-line-through bg-light"
+                            : "form-control border-0"
+                    }
+                    value={todoMsg}
+                    onChange={(e) => setTodoMsg(e.target.value)}
+                    readOnly={!isTodoEditable}
+                />
+
+                {/* update todo button */}
+                <button
+                    onClick={() => handleEditTodo()}
+                    disabled={todo.completed}
+                    className="btn btn-light border-0"
+                    type="submit"
+                >
+                    {isTodoEditable ? (
+                        <i className="text-warning fa-regular fa-folder-closed"></i>
+                    ) : (
+                        <i className="text-warning fa-regular fa-pen-to-square"></i>
+                    )}
+                </button>
+
+                {/* delete todo button */}
+                <button
+                    onClick={handleDeleteTodo}
+                    className="btn btn-light border-0"
+                    type="submit"
+                >
+                    <i className="fa-regular fa-trash-can text-danger"></i>
+                </button>
+            </div>
         </div>
     );
 };

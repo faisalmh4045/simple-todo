@@ -17,17 +17,21 @@ const TodoForm = () => {
             setTodoText("");
         }
     };
-    console.log("form render...");
 
     return (
         <form onSubmit={handleAddTodo}>
-            <input
-                type="text"
-                placeholder="Write Todo..."
-                value={todoText}
-                onChange={(e) => setTodoText(e.target.value)}
-            />
-            <button type="submit">Add</button>
+            <div className="input-group mb-3 input-group-lg">
+                <input
+                    type="text"
+                    value={todoText}
+                    onChange={(e) => setTodoText(e.target.value)}
+                    className="form-control"
+                    placeholder="add todo here..."
+                />
+                <button className="btn btn-success" type="submit">
+                    Add
+                </button>
+            </div>
         </form>
     );
 };
